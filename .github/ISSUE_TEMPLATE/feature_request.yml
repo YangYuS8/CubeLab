@@ -1,0 +1,27 @@
+name: Feature request
+description: Propose a normal feature for CubeLab.
+title: "[Feature] "
+labels:
+  - feature
+body:
+  - type: textarea
+    id: background
+    attributes:
+      label: Background
+      description: What problem or teaching need does this feature address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the feature you want.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: What must be true for this to be considered complete?
+    validations:
+      required: true

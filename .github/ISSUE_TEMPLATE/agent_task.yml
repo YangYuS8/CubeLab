@@ -1,0 +1,70 @@
+name: Agent task
+description: Structured task template for AI agents.
+title: "[Agent Task] "
+labels:
+  - agent-task
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: 背景
+      description: 说明任务背景、问题来源和上下文。
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目标
+      description: 明确任务目标和预期交付。
+    validations:
+      required: true
+  - type: textarea
+    id: forbidden-scope
+    attributes:
+      label: 不允许修改的范围
+      description: 列出严禁改动的模块、目录或行为。
+    validations:
+      required: true
+  - type: textarea
+    id: allowed-scope
+    attributes:
+      label: 允许修改的范围
+      description: 列出本次任务允许改动的模块、目录或文件。
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+      description: 用可验证的方式描述完成标准。
+    validations:
+      required: true
+  - type: textarea
+    id: docs
+    attributes:
+      label: 相关文档
+      description: 填写需要参考的设计文档、README、Issue 或 PR。
+    validations:
+      required: true
+  - type: dropdown
+    id: pr-type
+    attributes:
+      label: 预期 PR 类型
+      options:
+        - feature
+        - bugfix
+        - docs
+        - refactor
+        - chore
+        - high-risk
+    validations:
+      required: true
+  - type: dropdown
+    id: human-confirmation
+    attributes:
+      label: 是否需要人工确认
+      options:
+        - yes
+        - no
+    validations:
+      required: true

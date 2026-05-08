@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: CubeLab documentation
+    url: https://example.com/cubelab-docs
+    about: Read the project docs and contributor guidance first.
