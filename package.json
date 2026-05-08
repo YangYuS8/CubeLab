@@ -2,8 +2,9 @@
   "name": "cubelab",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "CubeLab monorepo for secure sandbox-based education workflows.",
-  "license": "GPL-3.0",
+  "license": "Apache-2.0",
   "packageManager": "pnpm@10.20.0",
   "scripts": {
     "dev:web": "pnpm --filter @cubelab/web dev",
@@ -17,11 +18,14 @@
   "devDependencies": {
     "@types/node": "^24.9.1",
     "eslint": "^9.39.1",
+    "@eslint/js": "^9.39.1",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2",
     "vite": "^7.1.12",
     "vitepress": "^2.0.0-alpha.12",
     "vitest": "^4.0.8",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "zod": "^4.1.12"
   }
 }

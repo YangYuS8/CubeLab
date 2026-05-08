@@ -12,6 +12,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@cubelab/shared": "workspace:*"
+    "@cubelab/shared": "workspace:*",
+    "zod": "^4.1.12"
   }
 }

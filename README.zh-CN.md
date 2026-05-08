@@ -38,24 +38,39 @@ CubeLab 的目标不是把终端放进浏览器。
 
 ## 初始技术选型
 
-- 包管理器：`pnpm`
+- Monorepo：`pnpm workspace`
 - 语言：`TypeScript`
 - 前端：`Vite + Vue`
-- 文档：`VitePress`
-- 后端：轻量 TypeScript 服务骨架
-- 测试：预留 `vitest`
-- 规范：预留 `eslint` / `prettier`
+- 后端：`Node.js + TypeScript + Fastify`
+- 校验：`Zod`
+- 文档：支持 `en` / `zh-CN` 的 `VitePress`
+- 测试：优先 `Vitest`
+- E2E：后续再引入 `Playwright`，当前不接入
+- 数据库：后续再引入 `PostgreSQL + Drizzle`，当前不接入
+- 队列：仅当异步实验任务需要时再考虑 `Redis/BullMQ`
+- 沙箱集成：所有 CubeSandbox 交互必须经过 `sandbox-adapter`
+- 实验 DSL：`TypeScript` 类型 + `Zod` 运行时 schema
 
 前端先选择 Vue，原因是它与 Vite 配合自然、初始依赖轻、文档生态成熟，适合教学平台这类需要长期维护文档与交互界面的项目，同时避免过早引入更重的全栈框架。
+后端先选择 Fastify，原因是它足够轻、类型友好，并且适合在初始化阶段保留清晰的服务边界，而不是过早引入更重的应用框架。
+
+当前初始化阶段明确不采用 Next.js、Nuxt、NestJS、Kubernetes、微服务和真实 LLM Agent 运行时集成。
 
 ## 快速开始
 
 ```bash
 pnpm install
 pnpm typecheck
+pnpm lint
+pnpm test
 pnpm --filter @cubelab/docs docs:dev
+pnpm --filter @cubelab/api dev
 ```
 
 ## 贡献说明
 
 在进行较大改动前，请先阅读 `AGENTS.md`，尤其是通过 AI agents 或自动化方式参与贡献时。
+
+## 许可证
+
+本项目采用 `Apache-2.0` 许可证。

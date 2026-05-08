@@ -16,6 +16,19 @@ The project separates sandbox runtime concerns from teaching concerns.
 5. Favor explicit abstractions over hidden coupling or one-off shortcuts.
 6. Treat security-sensitive changes with elevated caution and documentation.
 
+## Current Stack Decisions
+
+1. Monorepo uses `pnpm workspace`.
+2. Primary language is `TypeScript`.
+3. Frontend uses `Vite + Vue`.
+4. Backend currently uses `Node.js + TypeScript + Fastify`.
+5. Runtime validation uses `Zod`.
+6. Documentation uses `VitePress` with English and Simplified Chinese locales.
+7. Testing is `Vitest` first.
+8. `Playwright` is deferred until real E2E needs exist.
+9. `PostgreSQL + Drizzle` is deferred until persistence requirements are real.
+10. `Redis/BullMQ` is deferred until asynchronous lab jobs require it.
+
 ## Forbidden Actions
 
 1. Do not make large-scale changes without an Issue.
@@ -25,6 +38,9 @@ The project separates sandbox runtime concerns from teaching concerns.
 5. Do not define lab behavior outside `packages/lab-spec` when it belongs to reusable lab specification semantics.
 6. Do not introduce security-sensitive behavior without explicitly labeling the change as `high-risk` when it touches permissions, networking, command execution, file mounting, or agent automation.
 7. Do not merge agent-authored work without human review.
+8. Do not switch the backend framework away from Fastify without an explicit architecture Issue and approval.
+9. Do not introduce Docker-oriented terms such as `container` or `image` into sandbox abstractions where sandbox-neutral language is required.
+10. Do not modify architecture decisions after initialization without an Issue.
 
 ## Architecture Rules
 
@@ -32,6 +48,8 @@ The project separates sandbox runtime concerns from teaching concerns.
 2. All sandbox capabilities must be exposed through `sandbox-adapter` abstractions.
 3. App-layer code must depend on abstractions, not on a specific CubeSandbox runtime detail.
 4. Shared utilities belong in `packages/shared` only when they are genuinely cross-package.
+5. `lab-spec` must provide both TypeScript types and Zod runtime schemas.
+6. `sandbox-adapter` terminology must stay sandbox-neutral and must not imply Docker or container-specific semantics.
 
 ## Code Style
 
@@ -40,6 +58,7 @@ The project separates sandbox runtime concerns from teaching concerns.
 3. Avoid heavy dependencies unless there is a clear long-term need.
 4. Keep placeholder code minimal during initialization.
 5. Add comments only where they clarify intent that is not obvious from the code.
+6. Every new dependency must be justified by a concrete need in the related Issue or PR.
 
 ## Documentation Style
 
@@ -55,6 +74,7 @@ The project separates sandbox runtime concerns from teaching concerns.
 3. PR descriptions must include design tradeoffs, risk notes, and validation steps.
 4. High-risk changes must be called out explicitly in the PR title or body.
 5. Do not bundle unrelated refactors into feature or bug-fix PRs.
+6. After this initialization correction, all non-trivial development must follow Issue -> branch -> PR -> human review.
 
 ## Issue-Driven Workflow
 
@@ -63,6 +83,7 @@ The project separates sandbox runtime concerns from teaching concerns.
 3. Implement only the scoped change.
 4. Verify the result and document the outcome in the PR.
 5. Ask for human confirmation when the Issue or PR template requires it.
+6. Do not bypass the workflow by directly editing architecture, dependency, or framework decisions without an Issue.
 
 ## Scope Control Rules
 

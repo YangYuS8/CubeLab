@@ -28,7 +28,10 @@ export default defineConfig({
           },
           {
             text: 'Architecture',
-            items: [{ text: 'Overview', link: '/architecture/overview' }],
+            items: [
+              { text: 'Overview', link: '/architecture/overview' },
+              { text: 'ADR 0001', link: '/architecture/adr-0001-initial-tech-stack' },
+            ],
           },
           {
             text: 'Contributing',
@@ -56,7 +59,10 @@ export default defineConfig({
           },
           {
             text: '架构',
-            items: [{ text: '总体概览', link: '/zh/architecture/overview' }],
+            items: [
+              { text: '总体概览', link: '/zh/architecture/overview' },
+              { text: 'ADR 0001', link: '/zh/architecture/adr-0001-initial-tech-stack' },
+            ],
           },
           {
             text: '贡献',

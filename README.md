@@ -39,24 +39,39 @@ All agent-generated pull requests must still be reviewed and approved by a human
 
 ## Initial Stack Choice
 
-- Package manager: `pnpm`
+- Monorepo: `pnpm workspace`
 - Language: `TypeScript`
 - Frontend: `Vite + Vue`
-- Docs: `VitePress`
-- Backend: lightweight TypeScript service skeleton
-- Testing: `vitest` placeholders
-- Lint / format: `eslint` and `prettier` placeholders
+- Backend: `Node.js + TypeScript + Fastify`
+- Validation: `Zod`
+- Docs: `VitePress` with `en` / `zh-CN`
+- Testing: `Vitest` first
+- E2E: `Playwright` later, not now
+- Database: `PostgreSQL + Drizzle` later, not now
+- Queue: `Redis/BullMQ` later, only when async lab jobs require it
+- Sandbox integration: all CubeSandbox interactions must go through `sandbox-adapter`
+- Lab DSL: `TypeScript` types + `Zod` runtime schemas
 
 Vue is chosen for the frontend shell because it works naturally with Vite, keeps the initial project weight low, has a strong documentation ecosystem, and is well suited for a future documentation-heavy education platform without forcing a heavy full-stack framework too early.
+Fastify is chosen for the backend skeleton because it keeps the service layer lightweight, typed, and easy to evolve without introducing a heavy application framework during initialization.
+
+Current initialization explicitly does not adopt Next.js, Nuxt, NestJS, Kubernetes, microservices, or real LLM Agent integrations as runtime dependencies.
 
 ## Getting Started
 
 ```bash
 pnpm install
 pnpm typecheck
+pnpm lint
+pnpm test
 pnpm --filter @cubelab/docs docs:dev
+pnpm --filter @cubelab/api dev
 ```
 
 ## Contributing
 
 Read `AGENTS.md` before making major changes, especially when contributing through AI agents or automation-assisted workflows.
+
+## License
+
+This project is licensed under `Apache-2.0`.

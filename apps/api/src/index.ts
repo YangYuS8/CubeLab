@@ -1,19 +1,41 @@
-import { createServer } from 'node:http';
+import Fastify from 'fastify';
 
-const server = createServer((_request, response) => {
-  response.writeHead(200, { 'content-type': 'application/json; charset=utf-8' });
-  response.end(
-    JSON.stringify({
-      name: 'CubeLab API',
-      status: 'placeholder',
-    }),
-  );
-});
-
-if (process.env.NODE_ENV !== 'test') {
-  server.listen(3000, () => {
-    console.log('CubeLab API placeholder listening on http://localhost:3000');
+export function buildApp() {
+  const app = Fastify({
+    logger: false,
   });
+
+  app.get('/health', async () => {
+    return {
+      name: 'CubeLab API',
+      status: 'ok',
+    };
+  });
+
+  app.get('/', async () => {
+    return {
+      name: 'CubeLab API',
+      status: 'ok',
+    };
+  });
+
+  return app;
 }
 
-export { server };
+async function start() {
+  const app = buildApp();
+
+  try {
+    await app.listen({
+      host: '0.0.0.0',
+      port: 3000,
+    });
+  } catch (error) {
+    app.log.error(error);
+    process.exit(1);
+  }
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  void start();
+}
